@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
-import '../home/home.dart';
-import '../favor/favor.dart';
+import '../home/ui/home.dart';
+import '../favor/ui/favor.dart';
 import 'bottom_bar_item.dart';
 
 final List<Widget> children = [

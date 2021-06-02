@@ -1,7 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
-import '../../module/home/home.dart';
-import '../../module/favor/favor.dart';
+import '../../module/home/ui/home.dart';
+import '../../module/favor/ui/favor.dart';
 import '../../module/main/main.dart';
 
 class ZYRouter {

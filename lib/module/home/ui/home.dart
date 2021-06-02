@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'home_content.dart';
 
 class ZYHomePage extends StatelessWidget {
   static const String routeName = "/home";
@@ -8,11 +9,9 @@ class ZYHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("首页"),
+        title: Text("美食广场"),
       ),
-      body: Center(
-        child: Text("首页"),
-      )
+      body: ZYHomeContent()
     );
   }
 }
