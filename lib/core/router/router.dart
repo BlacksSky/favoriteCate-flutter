@@ -1,7 +1,8 @@
-import 'package:favorite_cate_flutter/module/ui/main/main.dart';
+
 import 'package:flutter/cupertino.dart';
-import '../../ui/home/home.dart';
-import '../../ui/favor/favor.dart';
+import '../../module/home/home.dart';
+import '../../module/favor/favor.dart';
+import '../../module/main/main.dart';
 
 class ZYRouter {
   static final String initialRoute = ZYMainPage.routeName;

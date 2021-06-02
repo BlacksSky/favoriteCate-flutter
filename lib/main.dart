@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'module/ui/main/main.dart';
-import 'module/core/router/router.dart';
+import 'module/main/main.dart';
+import 'core/router/router.dart';
+import 'shared/app_theme.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,11 +13,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      // home: MyHomePage(title: 'Flutter Demo Home Page'),
+      theme: ZYAppTheme.defaultThemeData,
+      darkTheme: ZYAppTheme.darkTheme,
       initialRoute: ZYRouter.initialRoute,
       routes: ZYRouter.routes,
     );
