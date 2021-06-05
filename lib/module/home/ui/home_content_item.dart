@@ -9,17 +9,22 @@ class ZYHomeContentItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          gradient: LinearGradient(colors: [
-            _categoryModel.showColor.withOpacity(0.5),
-            _categoryModel.showColor
-          ])),
-      child: Text(_categoryModel.title,
-          style: Theme.of(context).textTheme.display2.copyWith(
-              fontWeight: FontWeight.bold, color: Colors.black87)),
-      alignment: Alignment.center,
+    return GestureDetector(
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            gradient: LinearGradient(colors: [
+              _categoryModel.showColor.withOpacity(0.5),
+              _categoryModel.showColor
+            ])),
+        child: Text(_categoryModel.title,
+            style: Theme.of(context).textTheme.display2.copyWith(
+                fontWeight: FontWeight.bold, color: Colors.black87)),
+        alignment: Alignment.center,
+      ),
+      onTap: (){
+        Navigator.of(context).pushNamed("/meal",arguments: _categoryModel);
+      },
     );
 
   }

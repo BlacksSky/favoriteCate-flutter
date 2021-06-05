@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'module/main/main.dart';
 import 'core/router/router.dart';
 import 'shared/app_theme.dart';
+import 'module/meal/view_model/meal_view_model.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (content) => ZYMealViewModel(),
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -35,4 +40,4 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return ZYMainPage();
   }
- }
+}
