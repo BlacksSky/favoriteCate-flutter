@@ -6,6 +6,7 @@ import 'package:favorite_cate_flutter/module/meal/model/meal_model.dart';
 import 'package:favorite_cate_flutter/module/meal/view_model/meal_view_model.dart';
 import '../net/meal_request.dart';
 import '../../home/model/category_model.dart';
+import 'package:favorite_cate_flutter/global_widget/meal_item.dart';
 
 class ZYMealContent extends StatefulWidget {
   @override
@@ -40,7 +41,7 @@ class _ZYMealContentState extends State<ZYMealContent> {
         return ListView.builder(
           itemCount: meals.length,
           itemBuilder: (content, index) {
-            return Text(meals[index].title);
+            return ZYMealItem(meals[index]);
           },
         );
       },

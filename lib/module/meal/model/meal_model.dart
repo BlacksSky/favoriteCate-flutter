@@ -10,7 +10,6 @@ ZYMealModel zyMealModelFromJson(String str) =>
 String zyMealModelToJson(ZYMealModel data) => json.encode(data.toJson());
 
 class ZYMealModel {
-
   ZYMealModel({this.meal});
 
   List<ZYMeal> meal;
@@ -29,6 +28,8 @@ class ZYMealModel {
   }
 }
 
+List complexityStringList = ["简单", "中等", "困难"];
+
 class ZYMeal {
   ZYMeal({
     this.id,
@@ -36,6 +37,7 @@ class ZYMeal {
     this.title,
     this.affordability,
     this.complexity,
+    this.complexityString,
     this.imageUrl,
     this.duration,
     this.ingredients,
@@ -51,6 +53,7 @@ class ZYMeal {
   String title;
   int affordability;
   int complexity;
+  String complexityString;
   String imageUrl;
   int duration;
   List<String> ingredients;
@@ -66,6 +69,7 @@ class ZYMeal {
         title: json["title"],
         affordability: json["affordability"],
         complexity: json["complexity"],
+        complexityString: complexityStringList[json["complexity"]],
         imageUrl: json["imageUrl"],
         duration: json["duration"],
         ingredients: List<String>.from(json["ingredients"].map((x) => x)),

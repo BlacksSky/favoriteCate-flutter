@@ -10,8 +10,6 @@ class ZYMealViewModel extends ChangeNotifier{
   ZYMealModel _mealModel;
 
   List<ZYMeal> get meals{
-    print("======");
-    print("mealModel:${_mealModel}");
     if(_mealModel == null) return [];
     return _mealModel.meal;
   }
