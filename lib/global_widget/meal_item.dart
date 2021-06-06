@@ -25,56 +25,61 @@ class ZYMealItem extends StatelessWidget {
   }
 
   Widget buildBasicInfo(BuildContext context) {
-    return Stack(
-      children: [
-        ClipRRect(
-          child: Image.network(
-            _meal.imageUrl,
-            width: double.infinity,
-            height: 150.px,
-            fit: BoxFit.cover,
-            loadingBuilder: (context, child, loadingProgress) {
-              if (loadingProgress == null) return child;
-              double progress = loadingProgress.cumulativeBytesLoaded /
-                  loadingProgress.expectedTotalBytes;
-              return Container(
-                  alignment: Alignment.center,
-                  height: 150.px,
-                  child: CircularProgressIndicator(value: progress));
-            },
-            errorBuilder: (context, error, stackTrace) {
-              return Container(
-                  child: Icon(
-                    Icons.error,
-                    size: 150,
-                  ),
-                  width: double.infinity,
-                  height: 150.px);
-            },
+    return GestureDetector(
+      child: Stack(
+        children: [
+          ClipRRect(
+            child: Image.network(
+              _meal.imageUrl,
+              width: double.infinity,
+              height: 150.px,
+              fit: BoxFit.cover,
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) return child;
+                double progress = loadingProgress.cumulativeBytesLoaded /
+                    loadingProgress.expectedTotalBytes;
+                return Container(
+                    alignment: Alignment.center,
+                    height: 150.px,
+                    child: CircularProgressIndicator(value: progress));
+              },
+              errorBuilder: (context, error, stackTrace) {
+                return Container(
+                    child: Icon(
+                      Icons.error,
+                      size: 150,
+                    ),
+                    width: double.infinity,
+                    height: 150.px);
+              },
+            ),
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(radiusValue),
+                topRight: Radius.circular(radiusValue)),
           ),
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(radiusValue),
-              topRight: Radius.circular(radiusValue)),
-        ),
-        Positioned(
-          right: 10,
-          bottom: 10,
-          child: Container(
-            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+          Positioned(
+            right: 10,
+            bottom: 10,
+            child: Container(
+              padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
 
-            // width: 300,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6), color: Colors.black54),
+              // width: 300,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6), color: Colors.black54),
 
-            child: Text(_meal.title,
-                style: Theme.of(context)
-                    .textTheme
-                    .display3
-                    .copyWith(color: Colors.white),
-                overflow: TextOverflow.ellipsis),
-          ),
-        )
-      ],
+              child: Text(_meal.title,
+                  style: Theme.of(context)
+                      .textTheme
+                      .display3
+                      .copyWith(color: Colors.white),
+                  overflow: TextOverflow.ellipsis),
+            ),
+          )
+        ],
+      ),
+      onTap: (){
+        Navigator.of(context).pushNamed("/meal_detail",arguments: _meal);
+      },
     );
   }
 
