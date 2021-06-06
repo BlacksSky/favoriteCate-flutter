@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:favorite_cate_flutter/module/meal/model/meal_model.dart';
 import 'package:favorite_cate_flutter/base/extension/fit_size_extension.dart';
+import 'package:provider/provider.dart';
 import 'default_button.dart';
+import 'package:favorite_cate_flutter/module/meal/view_model/favor_view_model.dart';
 
 class ZYMealItem extends StatelessWidget {
   final ZYMeal _meal;
@@ -65,7 +67,8 @@ class ZYMealItem extends StatelessWidget {
 
               // width: 300,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6), color: Colors.black54),
+                  borderRadius: BorderRadius.circular(6),
+                  color: Colors.black54),
 
               child: Text(_meal.title,
                   style: Theme.of(context)
@@ -77,8 +80,8 @@ class ZYMealItem extends StatelessWidget {
           )
         ],
       ),
-      onTap: (){
-        Navigator.of(context).pushNamed("/meal_detail",arguments: _meal);
+      onTap: () {
+        Navigator.of(context).pushNamed("/meal_detail", arguments: _meal);
       },
     );
   }
@@ -89,26 +92,29 @@ class ZYMealItem extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          ZYDefaultButton(
-            Icon(
-              Icons.schedule,
-            ),
-            titleString: "${_meal.duration} 分钟",
-          ),
-          ZYDefaultButton(
-            Icon(
-              Icons.restaurant,
-            ),
-            titleString: _meal.complexityString,
-          ),
-          ZYDefaultButton(
-            Icon(
-              Icons.favorite_border,
-            ),
-            titleString: "未收藏",
-          ),
+          ZYDefaultButton(Icon(Icons.schedule),
+              titleString: "${_meal.duration} 分钟"),
+          ZYDefaultButton(Icon(Icons.restaurant),
+              titleString: _meal.complexityString),
+          buildFavorInfo(),
         ],
       ),
     );
+  }
+
+  Widget buildFavorInfo() {
+    return Consumer<ZYFavorViewModel>(builder: (context, mealViewModel, child) {
+      bool isFavor = mealViewModel.isFavor(_meal);
+      final iconData = isFavor ? Icons.favorite : Icons.favorite_border;
+      final color = isFavor ? Colors.red : Colors.black;
+      final title = isFavor ? "收藏" : "未收藏";
+      return GestureDetector(
+        child:
+            Container(width: 80,child: ZYDefaultButton(Icon(iconData, color: color), titleString: title)),
+        onTap: () {
+          mealViewModel.handleMeal(_meal);
+        },
+      );
+    });
   }
 }

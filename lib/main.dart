@@ -4,15 +4,24 @@ import 'core/router/router.dart';
 import 'shared/app_theme.dart';
 import 'module/meal/view_model/meal_view_model.dart';
 import 'package:provider/provider.dart';
-import 'package:favorite_cate_flutter/base/extension/fit_size_extension.dart';
-
 import 'shared/size_fit.dart';
+import 'package:favorite_cate_flutter/module/meal/view_model/favor_view_model.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(
-    create: (content) => ZYMealViewModel(),
-    child: MyApp(),
-  ));
+  // ChangeNotifierProvider(
+  //   create: (content) => ZYMealViewModel(),
+  //   child: MyApp(),
+  // )
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => ZYMealViewModel()),
+        ChangeNotifierProvider(create: (context) => ZYFavorViewModel()),
+      ],
+      child: MyApp(),
+    )
+
+  );
   ZYSizeFit.initialize();
 }
 

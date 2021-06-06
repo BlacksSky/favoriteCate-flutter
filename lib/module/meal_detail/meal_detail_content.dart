@@ -38,7 +38,7 @@ class ZYMealDetailContent extends StatelessWidget {
             shrinkWrap: true,
             itemBuilder: (context, index) {
               return Card(
-                color: Colors.amber,
+                color: Theme.of(context).accentColor,
                 child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     child: Text(_meal.ingredients[index])),
