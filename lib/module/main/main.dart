@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'initialize_items.dart';
+import '../home/ui/home_drawer.dart';
 
 class ZYMainPage extends StatefulWidget {
   static const String routeName = "/";
@@ -19,6 +20,7 @@ class _ZYMainPageState extends State<ZYMainPage> {
         index: _index,
         children: children,
       ),
+      drawer: ZYHomeDrawer(),
       bottomNavigationBar: BottomNavigationBar(
         items: items,
         currentIndex: _index,
